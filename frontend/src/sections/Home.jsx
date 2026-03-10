@@ -34,7 +34,7 @@ const Home = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => spotlightOpacity.set(1)}
       onMouseLeave={() => spotlightOpacity.set(0)}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-gradient"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-gradient pt-16"
     >
       {/* Dot grid */}
       <div

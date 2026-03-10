@@ -3,7 +3,7 @@ import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/projects';
 
 const Projects = () => (
-  <section id="projects" className="section-padding" style={{ background: 'linear-gradient(180deg, #0A0F1E 0%, #0d1a2e 100%)' }}>
+  <section id="projects" className="px-6 md:px-12 lg:px-24 pt-24 pb-12" style={{ background: 'linear-gradient(180deg, #0A0F1E 0%, #0d1a2e 100%)' }}>
     <div className="max-w-6xl mx-auto">
       <AnimateOnScroll>
         <h2 className="text-3xl md:text-4xl font-bold mb-2">

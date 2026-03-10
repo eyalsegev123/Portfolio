@@ -132,6 +132,13 @@ const Contact = () => {
         </div>
       </div>
 
+      {/* Footer */}
+      <div className="mt-20 pt-8 border-t border-white/5 text-center">
+        <p className="text-white/20 text-sm font-mono">
+          © {new Date().getFullYear()} Eyal Segev
+        </p>
+      </div>
+
       {/* Toast notification */}
       {toast.show && (
         <div className={`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-lg text-sm font-medium shadow-lg transition-all ${
