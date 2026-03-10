@@ -20,7 +20,6 @@ frontend/
 ├── tailwind.config.js
 ├── postcss.config.js       # Required — runs Tailwind via PostCSS
 ├── .env                    # EmailJS credentials (gitignored)
-├── .env.example            # Safe template to commit
 └── src/
     ├── components/         # Reusable UI pieces
     │   ├── Navbar.jsx
