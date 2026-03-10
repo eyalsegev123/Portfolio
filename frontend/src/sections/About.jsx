@@ -29,10 +29,10 @@ const About = () => (
       <AnimateOnScroll delay={0.1}>
         <div className="glass rounded-2xl p-6 md:p-8 mb-16 max-w-3xl">
           <p className="text-white/70 leading-relaxed text-base md:text-lg">
-            Computer Science graduate from Ben-Gurion University (GPA 84.14) currently working as a
-            Software Engineer at Meta. I specialize in full-stack and backend systems, with experience
-            in large-scale production codebases. Passionate about building efficient, maintainable
-            software and solving complex engineering challenges.
+            Computer Science graduate from Ben-Gurion University currently working as a Software
+            Engineer at Meta. I specialize in full-stack and backend systems — from React frontends
+            to distributed data pipelines on AWS. Experienced in large-scale production codebases
+            and passionate about building efficient, maintainable software.
           </p>
         </div>
       </AnimateOnScroll>
@@ -89,7 +89,7 @@ const About = () => (
             <div>
               <h4 className="text-white font-semibold">{edu.degree}</h4>
               <p className="text-cyan/80 text-sm">{edu.institution}</p>
-              <p className="text-white/40 text-xs font-mono mt-1">{edu.period} · GPA {edu.gpa}</p>
+              <p className="text-white/40 text-xs font-mono mt-1">{edu.period}</p>
             </div>
           </div>
         </AnimateOnScroll>

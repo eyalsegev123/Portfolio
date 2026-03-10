@@ -5,7 +5,7 @@ export const experience = [
     company: 'Meta',
     period: 'Feb 2025 – Present',
     tech: ['Hack', 'React', 'GraphQL'],
-    description: 'Working on production systems at Meta as a contingent worker. Building and maintaining features in a large-scale codebase, collaborating with full-time engineers on high-impact projects.',
+    description: 'Implemented features and fixes across frontend and backend in a large-scale production codebase. Participated in code reviews, debugging sessions, and design discussions alongside full-time engineers.',
   },
   {
     id: 'instructor',
@@ -22,7 +22,7 @@ export const education = [
     degree: 'B.Sc Computer Science',
     institution: 'Ben-Gurion University',
     period: '2022 – 2025',
-    gpa: '84.14',
+    gpa: null,
     logo: '/bengurion_logo.png',
   },
 ];

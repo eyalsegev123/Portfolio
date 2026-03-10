@@ -4,13 +4,14 @@ import {
   SiNodedotjs, SiExpress, SiGraphql, SiPostman,
   SiPostgresql, SiMongodb, SiDocker, SiGit, SiOpenjdk
 } from 'react-icons/si';
-import { FaAws } from 'react-icons/fa';
+import { FaAws, FaServer } from 'react-icons/fa';
 
 const iconMap = {
   SiJavascript, SiTypescript, SiPython, SiOpenjdk, SiCplusplus, SiC, SiPhp,
   SiReact, SiHtml5, SiCss3: SiCss, SiTailwindcss,
   SiNodedotjs, SiExpress, SiGraphql, SiPostman,
   SiPostgresql, SiMongodb, SiAmazonaws: FaAws, SiDocker, SiGit,
+  FaServer,
 };
 
 const SkillBadge = ({ name, icon }) => {

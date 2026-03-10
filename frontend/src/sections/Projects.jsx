@@ -12,9 +12,19 @@ const Projects = () => (
         <div className="w-16 h-1 bg-cyan rounded mb-12" />
       </AnimateOnScroll>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {projects.map((project, idx) => (
-          <AnimateOnScroll key={project.id} delay={0.1 * idx}>
+          <AnimateOnScroll
+            key={project.id}
+            delay={0.1 * idx}
+            className={
+              project.featured
+                ? 'lg:col-span-2'
+                : idx === projects.length - 1
+                ? 'lg:col-start-2 lg:col-span-2'
+                : ''
+            }
+          >
             <ProjectCard {...project} />
           </AnimateOnScroll>
         ))}

@@ -39,4 +39,13 @@ export const skillCategories = [
       { name: 'Git', icon: 'SiGit' },
     ],
   },
+  {
+    category: 'Distributed Systems',
+    skills: [
+      { name: 'Hadoop MapReduce', icon: 'FaServer' },
+      { name: 'AWS EMR', icon: 'SiAmazonaws' },
+      { name: 'AWS S3', icon: 'SiAmazonaws' },
+      { name: 'AWS SQS', icon: 'SiAmazonaws' },
+    ],
+  },
 ];
