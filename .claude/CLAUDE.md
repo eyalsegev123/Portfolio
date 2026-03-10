@@ -6,10 +6,11 @@ Personal portfolio website for Eyal Segev. React + Vite SPA, single page with sm
 ## Stack
 - **Framework**: React 18 + Vite 5
 - **Styling**: Tailwind CSS v3 (no MUI)
-- **Animations**: Framer Motion
+- **Animations**: Framer Motion + Lenis smooth scroll
 - **Icons**: react-icons
 - **Contact form**: EmailJS (`@emailjs/browser`)
 - **Package manager**: npm
+- **Fonts**: Archivo (headings), Space Grotesk (body), Fira Code (mono)
 
 ## Structure
 ```
@@ -24,7 +25,8 @@ frontend/
     ├── components/         # Reusable UI pieces
     │   ├── Navbar.jsx
     │   ├── AnimateOnScroll.jsx
-    │   ├── ProjectCard.jsx
+    │   ├── MagneticButton.jsx  # Cursor-attracted CTA buttons
+    │   ├── ProjectCard.jsx     # 3D tilt + glare on hover
     │   ├── SkillBadge.jsx
     │   └── TimelineItem.jsx
     ├── sections/           # Full-page sections (Home, About, Projects, Contact)
@@ -48,6 +50,15 @@ frontend/
 - Gradient text: use `.gradient-text` utility class
 - Section layout: use `.section-padding` utility class
 - Animations: wrap elements in `<AnimateOnScroll>` for scroll entrance
+
+## Interactive Effects
+- **Aurora background**: 3 CSS `@keyframes` blobs in hero (`aurora-1/2/3` in `index.css`)
+- **Spotlight**: cursor-tracked radial gradient in `Home.jsx` via Framer Motion `useTransform`
+- **3D card tilt**: `rotateX/Y` + glare overlay in `ProjectCard.jsx`
+- **Magnetic buttons**: `MagneticButton.jsx` — spring-follows cursor within 80px radius
+- **Smooth scroll**: Lenis via `<ReactLenis root>` in `index.jsx`
+- All animations respect `prefers-reduced-motion` (set in `index.css`)
+- Vite config has `resolve.dedupe: ['react', 'react-dom']` — required to prevent Lenis bundling its own React copy
 
 ## Content Updates
 All content is in `src/data/` — **do not hardcode content in components**.

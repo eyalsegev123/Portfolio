@@ -9,7 +9,8 @@ module.exports = {
         'cyan-dark': '#0891B2',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Archivo', 'system-ui', 'sans-serif'],
+        body: ['Space Grotesk', 'system-ui', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
       backgroundImage: {

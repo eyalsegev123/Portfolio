@@ -4,11 +4,38 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body { background-color: #0A0F1E; color: white; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { background-color: #0A0F1E; color: white; font-family: 'Archivo', sans-serif; -webkit-font-smoothing: antialiased; }
+  p, li { font-family: 'Space Grotesk', sans-serif; }
   ::selection { background: #22D3EE; color: #0A0F1E; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #0A0F1E; }
   ::-webkit-scrollbar-thumb { background: #22D3EE40; border-radius: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @keyframes aurora-1 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    33%  { transform: translate(60px, -40px) scale(1.1); }
+    66%  { transform: translate(-40px, 30px) scale(0.95); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes aurora-2 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    33%  { transform: translate(-50px, 50px) scale(1.05); }
+    66%  { transform: translate(70px, -30px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes aurora-3 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    50%  { transform: translate(30px, 60px) scale(1.08); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
 }
 
 @layer components {
