@@ -1,133 +1,101 @@
-import React, { useState } from 'react';
-import { Box, Container, Grid, Avatar, Tabs, Tab, Typography } from '@mui/material';
-import Slider from 'react-slick';
+import { motion } from 'framer-motion';
+import AnimateOnScroll from '../components/AnimateOnScroll';
+import SkillBadge from '../components/SkillBadge';
+import TimelineItem from '../components/TimelineItem';
+import { skillCategories } from '../data/skills';
+import { experience, education } from '../data/experience';
 
-const About = () => {
-  const [tab, setTab] = useState(0);
-
-  const TabPanel = ({ children, value, index }) => {
-    return (
-      <div role="tabpanel" hidden={value !== index}>
-        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-      </div>
-    );
-  };
-
-  const jobExperiences = [
-    {
-      title: 'Programming Instructor',
-      company: 'Cyber Education Center',
-      period: 'Oct 2024 - Present',
-      description: 'Description of your role and achievements'
-    },
-    {
-      title: 'Software Developer Intern',
-      company: 'Tech Company',
-      period: 'Jun 2023 - Sep 2023',
-      description: 'Description of your role and achievements'
-    },
-    {
-      title: 'Junior Developer',
-      company: 'Startup Inc.',
-      period: 'Jan 2022 - May 2023',
-      description: 'Description of your role and achievements'
-    }
-  ];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-
-  return (
-    <Box id="about" sx={{ minHeight: '90vh', py: 8, backgroundColor: '#121212' }}>
-      <Container>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <Avatar
-              src="/path/to/profile-picture.jpg" // Add your image path
-              sx={{ width: 300, height: 300, margin: 'auto', borderRadius: '50% 20%' }}
-            />
-          </Grid>
-          <Grid item xs={12} md={8}>
-            <Box sx={{ color: 'white', mb: 4 }}>
-              <Typography variant="h5" gutterBottom>
-                About Me
-              </Typography>
-              <Typography variant="body1">
-                Hi! I'm a third-year Computer Science student at Ben Gurion University with a great passion and motivation for programming, technology, and tackling complex problems. I'm a strong communicator with quick self-learning abilities and a true love for programming. I'm currently seeking a position as a Student Software Engineer.
-              </Typography>
-            </Box>
-
-            <Tabs value={tab} onChange={(e, newValue) => setTab(newValue)}>
-              <Tab label="Skills" />
-              <Tab label="Experience" />
-              <Tab label="Education" />
-            </Tabs>
-            
-            <TabPanel value={tab} index={0}>
-              <Box sx={{ color: 'white' }}>
-                <Typography variant="h6" gutterBottom>Technical Skills</Typography>
-                <Grid container spacing={2}>
-                  {['JavaScript', 'React', 'Node.js', 'Python', 'Java', 'Git'].map((skill) => (
-                    <Grid item xs={6} sm={4} key={skill}>
-                      <Box sx={{ 
-                        p: 2, 
-                        bgcolor: 'rgba(255,255,255,0.1)',
-                        borderRadius: 1,
-                        textAlign: 'center'
-                      }}>
-                        {skill}
-                      </Box>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
-            </TabPanel>
-
-            <TabPanel value={tab} index={1}>
-              <Box sx={{ color: 'white' }}>
-                <Typography variant="h6" gutterBottom>Work Experience</Typography>
-                <Box sx={{ maxWidth: 350, ml: 0 }}>
-                  <Slider {...settings}>
-                    {jobExperiences.map((job, index) => (
-                      <Box key={index} sx={{ mb: 2 }}>
-                        <Typography variant="subtitle1">{job.title}</Typography>
-                        <Typography variant="body2">{job.company} • {job.period}</Typography>
-                        <Typography variant="body2">{job.description}</Typography>
-                      </Box>
-                    ))}
-                  </Slider>
-                </Box>
-              </Box>
-            </TabPanel>
-
-            <TabPanel value={tab} index={2}>
-              <Box sx={{ color: 'white' }}>
-                <Typography variant="h6" gutterBottom>Education</Typography>
-                <Box sx={{ mb: 2 }}>
-                  <Grid container alignItems="center" spacing={2}>
-                    <Grid item>
-                      <img src="/bengurion_logo.png" alt="Ben Gurion University" style={{ width: 50, height: 50 }} />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">Ben Gurion University</Typography>
-                    </Grid>
-                  </Grid>
-                  <Typography variant="body2">Pursuing Bachelor's in Computer Science</Typography>
-                  <Typography variant="body2">2022 - 2026</Typography>
-                </Box>
-              </Box>
-            </TabPanel>
-
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  );
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05 } },
 };
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
+const About = () => (
+  <section id="about" className="section-padding bg-navy">
+    <div className="max-w-6xl mx-auto">
+      <AnimateOnScroll>
+        <h2 className="text-3xl md:text-4xl font-bold mb-2">
+          About <span className="gradient-text">Me</span>
+        </h2>
+        <div className="w-16 h-1 bg-cyan rounded mb-12" />
+      </AnimateOnScroll>
+
+      {/* Bio */}
+      <AnimateOnScroll delay={0.1}>
+        <div className="glass rounded-2xl p-6 md:p-8 mb-16 max-w-3xl">
+          <p className="text-white/70 leading-relaxed text-base md:text-lg">
+            Computer Science graduate from Ben-Gurion University (GPA 84.14) currently working as a
+            Software Engineer at Meta. I specialize in full-stack and backend systems, with experience
+            in large-scale production codebases. Passionate about building efficient, maintainable
+            software and solving complex engineering challenges.
+          </p>
+        </div>
+      </AnimateOnScroll>
+
+      {/* Skills */}
+      <AnimateOnScroll delay={0.15}>
+        <h3 className="text-xl font-semibold text-white mb-6">Technical Skills</h3>
+      </AnimateOnScroll>
+      <div className="space-y-8 mb-16">
+        {skillCategories.map((cat, catIdx) => (
+          <AnimateOnScroll key={cat.category} delay={0.05 * catIdx}>
+            <div>
+              <p className="text-cyan/70 text-xs font-mono uppercase tracking-widest mb-3">
+                {cat.category}
+              </p>
+              <motion.div
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {cat.skills.map((skill) => (
+                  <motion.div key={skill.name} variants={itemVariants}>
+                    <SkillBadge {...skill} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+
+      {/* Experience */}
+      <AnimateOnScroll>
+        <h3 className="text-xl font-semibold text-white mb-8">Experience</h3>
+      </AnimateOnScroll>
+      <div className="mb-16">
+        {experience.map((item, idx) => (
+          <AnimateOnScroll key={item.id} delay={0.1 * idx}>
+            <TimelineItem {...item} isLast={idx === experience.length - 1} />
+          </AnimateOnScroll>
+        ))}
+      </div>
+
+      {/* Education */}
+      <AnimateOnScroll>
+        <h3 className="text-xl font-semibold text-white mb-6">Education</h3>
+      </AnimateOnScroll>
+      {education.map((edu) => (
+        <AnimateOnScroll key={edu.degree} delay={0.1}>
+          <div className="glass rounded-2xl p-6 flex items-center gap-5 max-w-lg">
+            <img src={edu.logo} alt={edu.institution} className="w-14 h-14 object-contain rounded-xl" />
+            <div>
+              <h4 className="text-white font-semibold">{edu.degree}</h4>
+              <p className="text-cyan/80 text-sm">{edu.institution}</p>
+              <p className="text-white/40 text-xs font-mono mt-1">{edu.period} · GPA {edu.gpa}</p>
+            </div>
+          </div>
+        </AnimateOnScroll>
+      ))}
+    </div>
+  </section>
+);
 
 export default About;

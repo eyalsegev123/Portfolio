@@ -1,194 +1,148 @@
-import React, { useState } from 'react';
-import { Box, Container, TextField, Button, Typography, Alert, Snackbar, Grid } from '@mui/material';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import DownloadIcon from '@mui/icons-material/Download';
-import IconButton from '@mui/material/IconButton';
+import { useState } from 'react';
+import { FaGithub, FaLinkedin, FaDownload } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import AnimateOnScroll from '../components/AnimateOnScroll';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSending, setIsSending] = useState(false);
-  const [snackbar, setSnackbar] = useState({
-    open: false,
-    message: '',
-    severity: 'success',
-  });
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+
+  const showToast = (message, type) => {
+    setToast({ show: true, message, type });
+    setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 6000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Check if all fields are filled
     if (!formData.name || !formData.email || !formData.message) {
-      setSnackbar({
-        open: true,
-        message: 'All fields are required!',
-        severity: 'warning',
-      });
+      showToast('All fields are required!', 'warning');
       return;
     }
-
-    setIsSending(true); // Disable the button while sending
+    setIsSending(true);
     emailjs
       .send(
-        'service_1qki0c6', // Your EmailJS service ID
-        'template_0xjgxrl', // Your EmailJS template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formData,
-        'G-HZd_g6OMencz75V' // Your EmailJS public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
-      .then((result) => {
-        setSnackbar({
-          open: true,
-          message: 'Message sent successfully!',
-          severity: 'success',
-        });
-        setFormData({ name: '', email: '', message: '' }); // Reset form
+      .then(() => {
+        showToast('Message sent successfully!', 'success');
+        setFormData({ name: '', email: '', message: '' });
       })
       .catch((error) => {
-        setSnackbar({
-          open: true,
-          message: `Failed to send message: ${error.text || 'Unknown error'}`,
-          severity: 'error',
-        });
+        showToast(`Failed to send message: ${error.text || 'Unknown error'}`, 'error');
       })
-      .finally(() => setIsSending(false)); // Re-enable the button
+      .finally(() => setIsSending(false));
   };
 
+  const inputClass = "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-cyan/50 transition-colors";
+
   return (
-    <Box id="contact" sx={{ minHeight: '90vh', py: 8, backgroundColor: '#121212' }}>
-      <Container maxWidth="md">
-        <Typography variant="h3" sx={{ color: 'white', mb: 4 }}>
-          Contact Me
-        </Typography>
-        
-        <Grid container spacing={4}>
-          {/* Contact Form */}
-          <Grid item xs={12} md={8}>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                fullWidth
-                label="Name"
+    <section id="contact" className="section-padding bg-navy">
+      <div className="max-w-5xl mx-auto">
+        <AnimateOnScroll>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">
+            Get In <span className="gradient-text">Touch</span>
+          </h2>
+          <div className="w-16 h-1 bg-cyan rounded mb-12" />
+        </AnimateOnScroll>
+
+        <div className="grid md:grid-cols-5 gap-8">
+          {/* Form — 3/5 */}
+          <AnimateOnScroll className="md:col-span-3" delay={0.1}>
+            <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 space-y-4">
+              <input
+                type="text"
+                placeholder="Name"
                 aria-label="Name"
-                margin="normal"
+                className={inputClass}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                sx={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
               />
-              <TextField
-                fullWidth
-                label="Email"
-                aria-label="Email"
-                margin="normal"
+              <input
                 type="email"
+                placeholder="Email"
+                aria-label="Email"
+                className={inputClass}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                sx={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
               />
-              <TextField
-                fullWidth
-                label="Message"
+              <textarea
+                placeholder="Message"
                 aria-label="Message"
-                margin="normal"
-                multiline
-                rows={4}
+                rows={5}
+                className={`${inputClass} resize-none`}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                sx={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
               />
-              <Button
+              <button
                 type="submit"
-                variant="contained"
-                sx={{ mt: 2 }}
-                disabled={isSending} // Disable while sending
+                disabled={isSending}
+                className="w-full py-3 bg-cyan text-navy font-semibold rounded-lg hover:bg-cyan-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSending ? 'Sending...' : 'Send Message'}
-              </Button>
+              </button>
             </form>
-          </Grid>
+          </AnimateOnScroll>
 
-          {/* Social Links Column */}
-          <Grid item xs={12} md={4}>
-            <Box sx={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: 2,
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%'
-            }}>
-              <IconButton
-                color="inherit"
-                aria-label="LinkedIn"
-                href="https://www.linkedin.com/in/eyal-segev/"
-                target="_blank"
-                sx={{
-                  color: 'white',
-                  width: '64px',
-                  height: '64px',
-                  '&:hover': {
-                    color: '#0077b5',
-                    transform: 'scale(1.1)',
-                  },
-                  transition: 'transform 0.2s',
-                }}
-              >
-                <LinkedInIcon sx={{ fontSize: 40 }} />
-              </IconButton>
-
-              <IconButton
-                color="inherit"
-                aria-label="GitHub"
+          {/* Social links — 2/5 */}
+          <AnimateOnScroll className="md:col-span-2" delay={0.2}>
+            <div className="flex flex-col gap-4 h-full justify-center">
+              <a
                 href="https://github.com/eyalsegev123/"
                 target="_blank"
-                sx={{
-                  color: 'white',
-                  width: '64px',
-                  height: '64px',
-                  '&:hover': {
-                    color: '#6e5494',
-                    transform: 'scale(1.1)',
-                  },
-                  transition: 'transform 0.2s',
-                }}
+                rel="noopener noreferrer"
+                className="glass-hover rounded-xl p-4 flex items-center gap-4 group"
               >
-                <GitHubIcon sx={{ fontSize: 40 }} />
-              </IconButton>
+                <FaGithub className="text-2xl text-white/60 group-hover:text-cyan transition-colors" />
+                <div>
+                  <p className="text-white font-medium text-sm">GitHub</p>
+                  <p className="text-white/40 text-xs">@eyalsegev123</p>
+                </div>
+              </a>
 
-              <Button
-                color="inherit"
+              <a
+                href="https://www.linkedin.com/in/eyal-segev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-hover rounded-xl p-4 flex items-center gap-4 group"
+              >
+                <FaLinkedin className="text-2xl text-white/60 group-hover:text-cyan transition-colors" />
+                <div>
+                  <p className="text-white font-medium text-sm">LinkedIn</p>
+                  <p className="text-white/40 text-xs">eyal-segev</p>
+                </div>
+              </a>
+
+              <a
                 href="/Eyal_Segev_resume.pdf"
                 download
-                startIcon={<DownloadIcon />}
-                sx={{
-                  color: 'white',
-                  textTransform: 'none',
-                  padding: '12px 24px',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    transform: 'scale(1.1)',
-                  },
-                  transition: 'transform 0.2s',
-                }}
+                className="glass-hover rounded-xl p-4 flex items-center gap-4 group"
               >
-                Download CV
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
+                <FaDownload className="text-2xl text-white/60 group-hover:text-cyan transition-colors" />
+                <div>
+                  <p className="text-white font-medium text-sm">Resume</p>
+                  <p className="text-white/40 text-xs">Download PDF</p>
+                </div>
+              </a>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </div>
 
-        <Snackbar
-          open={snackbar.open}
-          autoHideDuration={6000}
-          onClose={() => setSnackbar({ ...snackbar, open: false })}
-        >
-          <Alert severity={snackbar.severity}>{snackbar.message}</Alert>
-        </Snackbar>
-      </Container>
-    </Box>
+      {/* Toast notification */}
+      {toast.show && (
+        <div className={`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-lg text-sm font-medium shadow-lg transition-all ${
+          toast.type === 'success' ? 'bg-cyan text-navy' :
+          toast.type === 'error' ? 'bg-red-500 text-white' :
+          'bg-yellow-500 text-navy'
+        }`}>
+          {toast.message}
+        </div>
+      )}
+    </section>
   );
 };
 

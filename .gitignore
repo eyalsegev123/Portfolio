@@ -1,32 +1,20 @@
 # Dependencies
 node_modules/
-/.pnp
-.pnp.js
 
-# Testing
-/coverage
+# Build output (Vite)
+frontend/dist/
 
-# Production
-/build
-
-# Misc
-.DS_Store
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.env
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# IDE specific files
-.idea
-.vscode
-*.swp
-*.swo
 
 # OS generated files
 .DS_Store
@@ -34,14 +22,22 @@ yarn-error.log*
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
 Thumbs.db
+ehthumbs.db
 
-# Optional eslint cache
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Caches
 .eslintcache
-
-# Optional npm cache directory
 .npm
-
-# Optional REPL history
 .node_repl_history
+
+# Playwright MCP output (screenshots, downloads, console logs)
+.playwright-mcp/
+
+# Implementation plans
+plans/
