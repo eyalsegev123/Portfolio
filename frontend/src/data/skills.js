@@ -7,8 +7,6 @@ export const skillCategories = [
       { name: 'Python', icon: 'SiPython' },
       { name: 'Java', icon: 'SiOpenjdk' },
       { name: 'C++', icon: 'SiCplusplus' },
-      { name: 'C', icon: 'SiC' },
-      { name: 'Hack', icon: 'SiPhp' },
     ],
   },
   {
@@ -26,15 +24,13 @@ export const skillCategories = [
       { name: 'Node.js', icon: 'SiNodedotjs' },
       { name: 'Express.js', icon: 'SiExpress' },
       { name: 'GraphQL', icon: 'SiGraphql' },
-      { name: 'REST APIs', icon: 'SiPostman' },
     ],
   },
   {
-    category: 'Databases & Cloud',
+    category: 'Databases & DevOps',
     skills: [
       { name: 'PostgreSQL', icon: 'SiPostgresql' },
       { name: 'MongoDB', icon: 'SiMongodb' },
-      { name: 'AWS', icon: 'SiAmazonaws' },
       { name: 'Docker', icon: 'SiDocker' },
       { name: 'Git', icon: 'SiGit' },
     ],
@@ -46,6 +42,15 @@ export const skillCategories = [
       { name: 'AWS EMR', icon: 'SiAmazonaws' },
       { name: 'AWS S3', icon: 'SiAmazonaws' },
       { name: 'AWS SQS', icon: 'SiAmazonaws' },
+    ],
+  },
+  {
+    category: 'AI Tools',
+    skills: [
+      { name: 'Cursor', icon: 'VscCode' },
+      { name: 'Claude Code', icon: 'FaTerminal' },
+      { name: 'NotebookLM', icon: 'SiGoogle' },
+      { name: 'Codex', icon: 'SiOpenai' },
     ],
   },
 ];

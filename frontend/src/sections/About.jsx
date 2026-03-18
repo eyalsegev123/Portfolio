@@ -37,35 +37,6 @@ const About = () => (
         </div>
       </AnimateOnScroll>
 
-      {/* Skills */}
-      <AnimateOnScroll delay={0.15}>
-        <h3 className="text-xl font-semibold text-white mb-6">Technical Skills</h3>
-      </AnimateOnScroll>
-      <div className="space-y-8 mb-16">
-        {skillCategories.map((cat, catIdx) => (
-          <AnimateOnScroll key={cat.category} delay={0.05 * catIdx}>
-            <div>
-              <p className="text-cyan/70 text-xs font-mono uppercase tracking-widest mb-3">
-                {cat.category}
-              </p>
-              <motion.div
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {cat.skills.map((skill) => (
-                  <motion.div key={skill.name} variants={itemVariants}>
-                    <SkillBadge {...skill} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </AnimateOnScroll>
-        ))}
-      </div>
-
       {/* Experience */}
       <AnimateOnScroll>
         <h3 className="text-xl font-semibold text-white mb-8">Experience</h3>
@@ -82,18 +53,49 @@ const About = () => (
       <AnimateOnScroll>
         <h3 className="text-xl font-semibold text-white mb-6">Education</h3>
       </AnimateOnScroll>
-      {education.map((edu) => (
-        <AnimateOnScroll key={edu.degree} delay={0.1}>
-          <div className="glass rounded-2xl p-6 flex items-center gap-5 max-w-lg">
-            <img src={edu.logo} alt={edu.institution} className="w-14 h-14 object-contain rounded-xl" />
-            <div>
-              <h4 className="text-white font-semibold">{edu.degree}</h4>
-              <p className="text-cyan/80 text-sm">{edu.institution}</p>
-              <p className="text-white/40 text-xs font-mono mt-1">{edu.period}</p>
+      <div className="mb-16">
+        {education.map((edu) => (
+          <AnimateOnScroll key={edu.degree} delay={0.1}>
+            <div className="glass rounded-2xl p-6 flex items-center gap-5 max-w-lg">
+              <img src={edu.logo} alt={edu.institution} className="w-14 h-14 object-contain rounded-xl" />
+              <div>
+                <h4 className="text-white font-semibold">{edu.degree}</h4>
+                <p className="text-cyan/80 text-sm">{edu.institution}</p>
+                <p className="text-white/40 text-xs font-mono mt-1">{edu.period}</p>
+              </div>
             </div>
-          </div>
-        </AnimateOnScroll>
-      ))}
+          </AnimateOnScroll>
+        ))}
+      </div>
+
+      {/* Skills */}
+      <AnimateOnScroll delay={0.15}>
+        <h3 className="text-xl font-semibold text-white mb-6">Technical Skills</h3>
+      </AnimateOnScroll>
+      <div className="space-y-8">
+        {skillCategories.map((cat, catIdx) => (
+          <AnimateOnScroll key={cat.category} delay={0.05 * catIdx}>
+            <div>
+              <p className="text-cyan/70 text-xs font-mono uppercase tracking-widest mb-3">
+                {cat.category}
+              </p>
+              <motion.div
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {cat.skills.map((skill) => (
+                  <motion.div key={skill.name} variants={itemVariants}>
+                    <SkillBadge {...skill} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
     </div>
   </section>
 );

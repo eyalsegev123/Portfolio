@@ -5,7 +5,7 @@ export const experience = [
     company: 'Meta',
     period: 'Feb 2025 – Present',
     tech: ['Hack', 'React', 'GraphQL'],
-    description: 'Implemented features and fixes across frontend and backend in a large-scale production codebase. Participated in code reviews, debugging sessions, and design discussions alongside full-time engineers.',
+    description: "Contracted to Meta's FinTech division via Tiff. Building and maintaining an internal platform used by agents for financial reviews and investigations — optimizing UI components, initiating data extraction workflows, and integrating with Meta's infrastructure.",
   },
   {
     id: 'instructor',

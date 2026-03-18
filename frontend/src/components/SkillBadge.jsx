@@ -1,17 +1,20 @@
 import {
-  SiJavascript, SiTypescript, SiPython, SiCplusplus, SiC, SiPhp,
+  SiJavascript, SiTypescript, SiPython, SiCplusplus,
   SiReact, SiHtml5, SiCss, SiTailwindcss,
-  SiNodedotjs, SiExpress, SiGraphql, SiPostman,
-  SiPostgresql, SiMongodb, SiDocker, SiGit, SiOpenjdk
+  SiNodedotjs, SiExpress, SiGraphql,
+  SiPostgresql, SiMongodb, SiDocker, SiGit, SiOpenjdk,
+  SiGoogle, SiOpenai
 } from 'react-icons/si';
-import { FaAws, FaServer } from 'react-icons/fa';
+import { FaAws, FaServer, FaTerminal } from 'react-icons/fa';
+import { VscCode } from 'react-icons/vsc';
 
 const iconMap = {
-  SiJavascript, SiTypescript, SiPython, SiOpenjdk, SiCplusplus, SiC, SiPhp,
+  SiJavascript, SiTypescript, SiPython, SiOpenjdk, SiCplusplus,
   SiReact, SiHtml5, SiCss3: SiCss, SiTailwindcss,
-  SiNodedotjs, SiExpress, SiGraphql, SiPostman,
+  SiNodedotjs, SiExpress, SiGraphql,
   SiPostgresql, SiMongodb, SiAmazonaws: FaAws, SiDocker, SiGit,
   FaServer,
+  SiGoogle, SiOpenai, FaTerminal, VscCode,
 };
 
 const SkillBadge = ({ name, icon }) => {
